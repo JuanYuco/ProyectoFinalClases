@@ -37,8 +37,15 @@
                 <a class="list-group-item list-group-item-action bg-light fas fa-home" asp-area="" asp-controller="Home" asp-action="Index"> Home</a>
                 @if (SignInManager.IsSignedIn(User))
                 {
-                    
+
                     <a class="list-group-item list-group-item-action bg-light fas fa-project-diagram" asp-controller="Projects" asp-action="Index"> Projects</a>
+                    if (User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink(" Activities", "Index", "Activities", null, new { @class = "list-group-item list-group-item-action bg-light fas fa-tasks" })
+                        @Html.ActionLink(" Priorities", "Index", "Priorities", null, new { @class = "list-group-item list-group-item-action bg-light fas fa-fist-raised" })
+                        @Html.ActionLink(" States", "Index", "States", null, new { @class = "list-group-item list-group-item-action bg-light fas fa-sync-alt" })
+                    }
+
                 }
                 else
                 {
